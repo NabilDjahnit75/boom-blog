@@ -4,7 +4,12 @@
 <html>
  <head>
 
-	<title><?php echo $article['title']; ?> - Mon premier blog !</title>
+     <?php
+     $query = $db->query('SELECT * FROM article WHERE id = ' . $_GET['id']);
+     $data2=$query->fetch();
+     ?>
+
+	<title><?php echo $data2['title']; ?> - Mon premier blog !</title>
 
    <?php require 'partials/head_assets.php'; ?>
 
@@ -23,16 +28,13 @@
 
             <!-- contenu de l'article -->
 
-                    <?php
-                    $query = $db->query('SELECT * FROM article WHERE id = ' . $_GET['id']);
-                    $data=$query->fetch();
-                    ?>
+
 
 
                     <article class="mb-4">
-                        <h2><?php echo $data['title'];?></h2>
-                        <span class="article-date"> crée le <?php echo $data ['created_at']; ?> </span>
-                        <div class="article-content"> <?php echo $data['content'];?> </div>
+                        <h2><?php echo $data2['title'];?></h2>
+                        <span class="article-date"> crée le <?php echo $data2 ['created_at']; ?> </span>
+                        <div class="article-content"> <?php echo $data2['content'];?> </div>
                     </article>
 
 
